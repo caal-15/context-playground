@@ -3,22 +3,26 @@ import { CircularProgress, Snackbar } from 'react-md'
 
 import TopBar from './TopBar'
 import Sidebar from './Sidebar'
-import { connect } from '../store'
+import { connect } from 'react-redux';
+
+import { fetchUser } from '../redux/actions/user';
 
 class Layout extends Component {
 
   componentDidMount() {
-    const { updateUser, lastSuccessfulUserFetch } = this.props
-    const now = new Date()
-    if (!lastSuccessfulUserFetch) {
-      updateUser()
+    const { fetchUser, user } = this.props;
+    const {  lastSuccessfulUserFetch } = user;
+    const now = new Date();
+    if (!lastSuccessfulUserFetch && !user.info) {
+      fetchUser();
     } else if ((now - lastSuccessfulUserFetch) / 1000 > 300) {
-      updateUser()
+      fetchUser();
     }
   }
 
   render() {
-    const { isFetchingUser, children, errorMsg, dismissError } = this.props
+    const { user, children, dismissError } = this.props
+    const { isFetchingUser, errorMsg } = user;
     const toasts = errorMsg ? [{ text: errorMsg }] :[]
     return (
       <div>
@@ -43,5 +47,6 @@ class Layout extends Component {
   }
 }
 
+const mapStateToProps = ({ user }) => ({ user });
 
-export default connect(Layout)
+export default connect(mapStateToProps, { fetchUser })(Layout)
