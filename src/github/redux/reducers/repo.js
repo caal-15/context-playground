@@ -20,12 +20,10 @@ export default( state = initialState, action ) => {
   switch (type) {
     case FETCH_REPO:
       return {
-        ...initialState,
         isFetchingRepos: true
        };
     case FETCH_REPO_SUCCESS:
       return {
-        ...initialState,
         repos: [ ...payload ],
         lastSuccessfulReposFetch: new Date(),
        };

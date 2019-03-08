@@ -17,7 +17,6 @@ export default( state = initialState, action ) => {
   switch (type) {
     case FETCH_USER:
       return {
-        ...initialState,
         isFetchingUser: true
        };
     case FETCH_USER_SUCCESS:
