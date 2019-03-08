@@ -5,7 +5,7 @@ import TopBar from './TopBar'
 import Sidebar from './Sidebar'
 import { connect } from 'react-redux';
 
-import { fetchUser } from '../redux/actions/user';
+import { fetchUser, dismissError } from '../redux/actions/user';
 
 class Layout extends Component {
 
@@ -49,4 +49,4 @@ class Layout extends Component {
 
 const mapStateToProps = ({ user }) => ({ user });
 
-export default connect(mapStateToProps, { fetchUser })(Layout)
+export default connect(mapStateToProps, { fetchUser, dismissError })(Layout)

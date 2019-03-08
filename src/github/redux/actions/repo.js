@@ -1,7 +1,8 @@
 import {
   FETCH_REPO,
   SELECT_REPO,
-  UNSELECT_REPO
+  UNSELECT_REPO,
+  DISMISS_REPO_ERROR
 } from '../constants/repo';
 
 export const fetchRepo = () => ({
@@ -15,4 +16,8 @@ export const selectRepo = (repo) => ({
 
 export const unselectRepo = () => ({
 	type: UNSELECT_REPO
+})
+
+export const dismissError = () => ({
+	type: DISMISS_REPO_ERROR
 })

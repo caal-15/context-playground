@@ -1,14 +1,15 @@
 import {
   FETCH_USER,
   FETCH_USER_SUCCESS,
-  FETCH_USER_ERROR
+  FETCH_USER_ERROR,
+  DISMISS_USER_ERROR
 } from '../constants/user';
 
 const initialState = {
 	isFetchingUser: false,
   info: null,
   lastSuccessfulUserFetch: null,
-	error: false
+	errorMsg: null
 }
 
 export default( state = initialState, action ) => {
@@ -23,14 +24,16 @@ export default( state = initialState, action ) => {
       return {
         info: { ...payload },
         lastSuccessfulUserFetch: new Date(),
-        isFetchingUser: false,
-        error: false
+        isFetchingUser: false
        };
     case FETCH_USER_ERROR:
       return {
-        ...initialState,
         isFetchingUser: false,
-        error: true
+        errorMsg: payload
+       };
+    case DISMISS_USER_ERROR:
+      return {
+        errorMsg: null
        };
     default:
       return state;

@@ -2,6 +2,7 @@ import {
   FETCH_REPO,
   FETCH_REPO_SUCCESS,
   FETCH_REPO_ERROR,
+  DISMISS_REPO_ERROR,
   SELECT_REPO,
   UNSELECT_REPO,
 } from '../constants/repo';
@@ -11,7 +12,7 @@ const initialState = {
   repos: [],
   selectedRepo: null,
   lastSuccessfulReposFetch: null,
-	error: false
+	errorMsg: null
 }
 
 export default( state = initialState, action ) => {
@@ -31,7 +32,7 @@ export default( state = initialState, action ) => {
     case FETCH_REPO_ERROR:
       return {
         isFetchingRepos: false,
-        error: true
+        errorMsg: payload
        };
     case SELECT_REPO:
       return {
@@ -42,6 +43,11 @@ export default( state = initialState, action ) => {
       return {
         ...state,
         selectedRepo: null
+       };
+    case DISMISS_REPO_ERROR:
+      return {
+        ...state,
+        errorMsg: null
        };
     default:
       return state;
