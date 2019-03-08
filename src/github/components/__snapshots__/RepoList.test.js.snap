@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render RepoListLayout render correctly RepoListLayout component 1`] = `
+<div
+  className="md-grid"
+/>
+`;
+
+exports[`Render SidebarLayout render correctly SidebarLayout component 1`] = `
+<div
+  className="md-grid"
+/>
+`;
